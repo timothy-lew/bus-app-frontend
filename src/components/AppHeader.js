@@ -6,7 +6,6 @@ import Button from './Button';
 
 function AppHeader() {
   const [modelOpen, setModelOpen] = useState(false);
-  const [stopOpen, setStopOpen] = useState(false);
 
   return (
     <div className={styles.AppHeader}>
@@ -14,12 +13,11 @@ function AppHeader() {
         Search
       </Button>
 
-      <BusModel
-        type="add"
-        modelOpen={modelOpen}
-        setModelOpen={setModelOpen}
-        stopOpen={stopOpen}
-      />
+      <Button variant="primary" onClick={() => window.location.reload()}>
+        Home
+      </Button>
+
+      <BusModel type="add" modelOpen={modelOpen} setModelOpen={setModelOpen} />
     </div>
   );
 }

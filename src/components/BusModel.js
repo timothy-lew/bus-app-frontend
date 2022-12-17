@@ -9,7 +9,6 @@ import Buses from './Buses';
 import BusStops from './BusStops';
 
 function BusModel({ modelOpen, setModelOpen }) {
-  const [busStopId, setBusStopId] = useState('');
   const [busStopName, setBusStopName] = useState('orchard');
 
   const [buses, setBuses] = useState([]);
@@ -18,49 +17,22 @@ function BusModel({ modelOpen, setModelOpen }) {
   const [displayBuses, setDisplayBuses] = useState(false);
   const [displayBusStops, setDisplayBusStops] = useState(false);
 
-  async function getBusStop(busStopId, busStopName) {
+  async function getBusStop(busStopName) {
     try {
-      console.log('busStopId = ', busStopId);
       console.log('busStopName = ', busStopName);
+      let res = await axios({
+        method: 'get',
+        url: `http://localhost:3000/busstop/name/${busStopName}`,
+      });
+      let res_json = JSON.stringify(res.data);
 
-      if (busStopId) {
-        let res = await axios({
-          method: 'get',
-          url: `http://localhost:3000/busstop/number/${busStopId}`,
-        });
-        let res_json = JSON.stringify(res.data);
-        // console.log(res_json);
+      busStops.push(JSON.parse(res_json));
 
-        let services = res.data.Services;
-        // console.log('logging services', JSON.stringify(services));
-
-        // need to convert back to json object
-        buses.push(JSON.parse(res_json));
-        // console.log(buses);
-
-        console.log('logging bus stops', buses);
-        setDisplayBuses(true);
-      } else {
-        let res = await axios({
-          method: 'get',
-          url: `http://localhost:3000/busstop/name/${busStopName}`,
-        });
-        let res_json = JSON.stringify(res.data);
-        console.log(res_json);
-
-        busStops.push(JSON.parse(res_json));
-
-        setDisplayBusStops(true);
-      }
+      setDisplayBusStops(true);
     } catch (err) {
       console.log(err);
     }
   }
-
-  // useEffect(() => {
-  //   console.log('displayBuses: ', displayBuses);
-  //   console.log('buses: ', buses);
-  // }, [displayBuses, buses]);
 
   return (
     modelOpen && (
@@ -101,18 +73,6 @@ function BusModel({ modelOpen, setModelOpen }) {
           ) : (
             <form className={styles.form}>
               <h1 className={styles.formTitle}>Search bus stop</h1>
-              <label htmlFor="busStopId">
-                Bus stop number
-                <input
-                  type="text"
-                  id="busStopId"
-                  value={busStopId}
-                  onChange={(e) => {
-                    // console.log(e.target.value);
-                    setBusStopId(e.target.value);
-                  }}
-                />
-              </label>
               <label htmlFor="busStopName">
                 Stop name
                 <input
@@ -120,7 +80,6 @@ function BusModel({ modelOpen, setModelOpen }) {
                   id="busStopName"
                   value={busStopName}
                   onChange={(e) => {
-                    // console.log(e.target.value);
                     setBusStopName(e.target.value);
                   }}
                 />
@@ -131,7 +90,7 @@ function BusModel({ modelOpen, setModelOpen }) {
                   variant="primary"
                   onClick={(e) => {
                     e.preventDefault();
-                    getBusStop(busStopId, busStopName);
+                    getBusStop(busStopName);
                   }}
                 >
                   Search

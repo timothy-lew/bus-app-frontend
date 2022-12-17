@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function getBusesByBusStopCode(busStopCode) {
+export default async function getBusesByBusStopCode(busStopCode) {
   try {
     let res = await axios({
       method: 'get',

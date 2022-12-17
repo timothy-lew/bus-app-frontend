@@ -7,8 +7,6 @@ import { addBusStop, deleteBusStop } from '../slices/busStopSlice';
 import { useDispatch } from 'react-redux';
 
 function BusStop({ busStop, buses, displayBuses, setDisplayBuses }) {
-  // console.log(busStop);
-
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
 
@@ -30,11 +28,13 @@ function BusStop({ busStop, buses, displayBuses, setDisplayBuses }) {
     }
   }
 
-  const handleCheck = (busStopCode) => {
-    console.log(busStopCode);
+  const handleCheck = (busStopCode, description) => {
+    // console.log(busStopCode);
     if (!checked) {
       setChecked(!checked);
-      dispatch(addBusStop({ busStopCode: busStopCode }));
+      dispatch(
+        addBusStop({ busStopCode: busStopCode, description: description })
+      );
     } else {
       setChecked(!checked);
       dispatch(deleteBusStop({ busStopCode: busStopCode }));
@@ -43,7 +43,7 @@ function BusStop({ busStop, buses, displayBuses, setDisplayBuses }) {
 
   return (
     <div className={styles.scroll}>
-      <div key={busStop.BusStopCode} className={styles.item}>
+      <div className={styles.item}>
         <h1 onClick={() => getBuses(busStop.BusStopCode)}>
           {busStop.Description}
         </h1>
@@ -56,6 +56,7 @@ function BusStop({ busStop, buses, displayBuses, setDisplayBuses }) {
             checked={checked}
             handleCheck={handleCheck}
             busStopCode={`${busStop.BusStopCode}`}
+            description={`${busStop.Description}`}
           />
         </div>
       </div>
