@@ -12,18 +12,25 @@ function Buses({ buses }) {
   return (
     <div className={styles.scroll}>
       {buses[0].Services.map((bus) => {
-        let minutes = new Date().getMinutes();
-        let m = new Date(bus.NextBus.EstimatedArrival).getMinutes();
-        let m2 = new Date(bus.NextBus2.EstimatedArrival).getMinutes();
-        let m3 = new Date(bus.NextBus3.EstimatedArrival).getMinutes();
+        let minutes = new Date().getTime();
+        let m1 = new Date(bus.NextBus.EstimatedArrival).getTime();
+        let m2 = new Date(bus.NextBus2.EstimatedArrival).getTime();
+        let m3 = new Date(bus.NextBus3.EstimatedArrival).getTime();
 
+        // Math.round(num * 10) / 10
         // function needs to return something
         return (
           <div key={bus.ServiceNo} className={styles.item}>
             <h1>{bus.ServiceNo} </h1>
-            <p className={styles.p}>{Math.abs(m - minutes)}</p>
-            <p className={styles.p}>{Math.abs(m2 - minutes)}</p>
-            <p className={styles.p}>{Math.abs(m3 - minutes)}</p>
+            <p className={styles.p}>
+              {!isNaN(m1) ? Math.round((m1 - minutes) / 1000 / 60) : 'NA'}
+            </p>
+            <p className={styles.p}>
+              {!isNaN(m2) ? Math.round((m2 - minutes) / 1000 / 60) : 'NA'}
+            </p>
+            <p className={styles.p}>
+              {!isNaN(m3) ? Math.round((m3 - minutes) / 1000 / 60) : 'NA'}
+            </p>
           </div>
         );
       })}
