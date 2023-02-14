@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# bus-app frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend for bus-app
 
-## Available Scripts
+1. Install nodenv
 
-In the project directory, you can run:
+```console
+$ brew install nodenv
+```
 
-### `npm start`
+2. Set up nodenv in your shell by adding this to ~/.zshrc
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```console
+$ which nodenv > /dev/null && eval "$(nodenv init -)"
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Restart your terminal so your changes take effect.
 
-### `npm test`
+4. Verify that nodenv is properly set up using this nodenv-doctor script:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```console
+$ curl -fsSL https://github.com/nodenv/nodenv-installer/raw/master/bin/nodenv-doctor | bash
+Checking for `nodenv' in PATH: /usr/local/bin/nodenv
+Checking for nodenv shims in PATH: OK
+Checking `nodenv install' support: /usr/local/bin/nodenv-install (node-build 3.0.22-4-g49c4cb9)
+Counting installed Node versions: none
+  There aren't any Node versions installed under `~/.nodenv/versions'.
+  You can install Node versions like so: nodenv install 2.2.4
+Auditing installed plugins: OK
+```
 
-### `npm run build`
+5. Install node 16.14.2
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```console
+$ nodenv install 16.14.2
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+6. Installs shims for all Node executables known to nodenv
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```console
+$ nodenv rehash
+```
 
-### `npm run eject`
+7. Set node version locally
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```console
+$ nodenv local 16.14.2
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+8. Install relevant packages
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```console
+$ npm i
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+9. Run to start
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```console
+$ npm start
+```
