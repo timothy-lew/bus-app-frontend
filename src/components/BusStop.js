@@ -6,9 +6,11 @@ import CheckButton from './CheckButton';
 import { addBusStop, deleteBusStop } from '../slices/busStopSlice';
 import { useDispatch } from 'react-redux';
 
-function BusStop({ busStop, buses, displayBuses, setDisplayBuses }) {
+function BusStop({ busStop, setBuses, setDisplayBuses }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
+
+  console.log(busStop);
 
   async function getBuses(busStopId) {
     try {
@@ -16,12 +18,7 @@ function BusStop({ busStop, buses, displayBuses, setDisplayBuses }) {
         method: 'get',
         url: `http://localhost:3000/busstop/number/${busStopId}`,
       });
-      let res_json = JSON.stringify(res.data);
-
-      let services = res.data.Services;
-
-      // need to convert back to json object
-      buses.push(JSON.parse(res_json));
+      setBuses(res.data);
       setDisplayBuses(true);
     } catch (err) {
       console.log(err);

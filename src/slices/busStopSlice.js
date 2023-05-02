@@ -18,6 +18,7 @@ export const busStopSlice = createSlice({
   initialState: initialValue,
   reducers: {
     addBusStop: (state, action) => {
+      console.log(action);
       // console.log(initialValue);
       // console.log(action.payload);
 

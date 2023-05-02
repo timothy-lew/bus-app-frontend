@@ -11,8 +11,8 @@ import BusStops from './BusStops';
 function BusModel({ modelOpen, setModelOpen }) {
   const [busStopName, setBusStopName] = useState('orchard');
 
-  const [buses, setBuses] = useState([]);
-  const [busStops, setBusStops] = useState([]);
+  const [buses, setBuses] = useState();
+  const [busStops, setBusStops] = useState();
 
   const [displayBuses, setDisplayBuses] = useState(false);
   const [displayBusStops, setDisplayBusStops] = useState(false);
@@ -24,9 +24,8 @@ function BusModel({ modelOpen, setModelOpen }) {
         method: 'get',
         url: `http://localhost:3000/busstop/name/${busStopName}`,
       });
-      let res_json = JSON.stringify(res.data);
 
-      busStops.push(JSON.parse(res_json));
+      setBusStops(res.data);
 
       setDisplayBusStops(true);
     } catch (err) {
@@ -41,15 +40,7 @@ function BusModel({ modelOpen, setModelOpen }) {
           <div
             className={styles.closeButton}
             onClick={() => {
-              setBuses([]);
-              setBusStops([]);
-              setBusStopName('');
-              setDisplayBuses(false);
-              setDisplayBusStops(false);
-              setModelOpen(false);
-            }}
-            onKeyDown={() => {
-              setBuses([]);
+              setBuses();
               setBusStops([]);
               setBusStopName('');
               setDisplayBuses(false);
@@ -67,6 +58,7 @@ function BusModel({ modelOpen, setModelOpen }) {
             <BusStops
               busStops={busStops}
               buses={buses}
+              setBuses={setBuses}
               displayBuses={displayBuses}
               setDisplayBuses={setDisplayBuses}
             />

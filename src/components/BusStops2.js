@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styles from '../styles/modules/todoItem.module.scss';
 import BusStop2 from './BusStop2';
 
-function BusStops2({ busStops, buses, displayBuses, setDisplayBuses }) {
+function BusStops2({ busStops, setBuses, setDisplayBuses }) {
+  console.log(busStops);
   return (
     <div className={styles.scroll}>
       {busStops.map((busStop) => {
@@ -10,7 +11,7 @@ function BusStops2({ busStops, buses, displayBuses, setDisplayBuses }) {
           <BusStop2
             key={`busStop2-${busStop.busStopCode}`}
             busStop={busStop}
-            buses={buses}
+            setBuses={setBuses}
             setDisplayBuses={setDisplayBuses}
           />
         );

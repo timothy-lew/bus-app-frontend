@@ -7,8 +7,8 @@ import getBusesByBusStopCode from '../utils/getBusesByBusStopCode';
 import { addBusStop, deleteBusStop } from '../slices/busStopSlice';
 import { useDispatch } from 'react-redux';
 
-function BusStop2({ busStop, buses, displayBuses, setDisplayBuses }) {
-  // console.log(busStop);
+function BusStop2({ busStop, setBuses, setDisplayBuses }) {
+  console.log(busStop);
   // console.log(buses);
 
   const dispatch = useDispatch();
@@ -20,13 +20,7 @@ function BusStop2({ busStop, buses, displayBuses, setDisplayBuses }) {
         method: 'get',
         url: `http://localhost:3000/busstop/number/${busStopId}`,
       });
-      let res_json = JSON.stringify(res.data);
-
-      let services = res.data.Services;
-
-      // need to convert back to json object
-      console.log(typeof buses);
-      buses.push(JSON.parse(res_json));
+      setBuses(res.data);
       setDisplayBuses(true);
     } catch (err) {
       console.log(err);
@@ -34,7 +28,7 @@ function BusStop2({ busStop, buses, displayBuses, setDisplayBuses }) {
   }
 
   const handleCheck = (busStopCode) => {
-    console.log(busStopCode);
+    // console.log(busStopCode);
     if (!checked) {
       setChecked(!checked);
       dispatch(addBusStop({ busStopCode: busStopCode }));

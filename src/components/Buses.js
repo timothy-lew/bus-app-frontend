@@ -9,9 +9,10 @@ function Buses({ buses }) {
   //   console.log(busStop.NextBus.EstimatedArrival);
   // });
 
+  // display buses
   return (
     <div className={styles.scroll}>
-      {buses[0].Services.map((bus) => {
+      {buses.Services.map((bus) => {
         let minutes = new Date().getTime();
         let m1 = new Date(bus.NextBus.EstimatedArrival).getTime();
         let m2 = new Date(bus.NextBus2.EstimatedArrival).getTime();
