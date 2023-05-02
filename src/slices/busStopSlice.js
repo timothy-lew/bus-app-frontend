@@ -18,14 +18,7 @@ export const busStopSlice = createSlice({
   initialState: initialValue,
   reducers: {
     addBusStop: (state, action) => {
-      console.log(action);
-      // console.log(initialValue);
-      // console.log(action.payload);
-
-      // if (state.busStopList.includes(action.payload)) {
-      //   console.log('HIT IF');
-      //   return;
-      // }
+      // console.log(action);
       state.busStopList.push(action.payload);
 
       const busStopList = window.localStorage.getItem('busStopList');
@@ -50,14 +43,14 @@ export const busStopSlice = createSlice({
       // console.log(action.payload);
 
       const busStopList = window.localStorage.getItem('busStopList');
-      console.log(busStopList);
+      // console.log(busStopList);
       if (busStopList) {
         const busStopListArr = JSON.parse(busStopList);
-        console.log(busStopListArr);
+        // console.log(busStopListArr);
 
         busStopListArr.forEach((busStop, index) => {
           // console.log(busStop);
-          if (busStop.busStopCode === action.payload.busStopCode) {
+          if (busStop.BusStopCode === action.payload.BusStopCode) {
             busStopListArr.splice(index, 1); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
           }
         });

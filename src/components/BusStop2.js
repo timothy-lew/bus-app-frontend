@@ -8,7 +8,7 @@ import { addBusStop, deleteBusStop } from '../slices/busStopSlice';
 import { useDispatch } from 'react-redux';
 
 function BusStop2({ busStop, setBuses, setDisplayBuses }) {
-  console.log(busStop);
+  // console.log(busStop);
   // console.log(buses);
 
   const dispatch = useDispatch();
@@ -29,13 +29,9 @@ function BusStop2({ busStop, setBuses, setDisplayBuses }) {
 
   const handleCheck = (busStopCode) => {
     // console.log(busStopCode);
-    if (!checked) {
+    if (checked) {
       setChecked(!checked);
-      dispatch(addBusStop({ busStopCode: busStopCode }));
-    } else {
-      console.log('HIT ELSE');
-      setChecked(!checked);
-      dispatch(deleteBusStop({ busStopCode: busStopCode }));
+      dispatch(deleteBusStop({ BusStopCode: busStopCode }));
     }
   };
 
@@ -49,23 +45,23 @@ function BusStop2({ busStop, setBuses, setDisplayBuses }) {
           //   buses.push(res);
           //   setDisplayBuses(true);
           // }}
-          onClick={() => getBuses(busStop.busStopCode)}
+          onClick={() => getBuses(busStop.BusStopCode)}
         >
-          {busStop.busStopCode}
+          {busStop.BusStopCode}
         </h1>
-        <h1 onClick={() => getBuses(busStop.busStopCode)}>
-          {busStop.description}
+        <h1 onClick={() => getBuses(busStop.BusStopCode)}>
+          {busStop.Description}
         </h1>
         <p onClick={() => getBuses(busStop.BusStopCode)}>{busStop.RoadName}</p>
         <div
           className={styles.todoDetails}
-          onClick={() => console.log('clicked')}
+          // onClick={() => console.log('clicked')}
         >
           <CheckButton
             onClick={() => handleCheck(busStop.BusStopCode)}
             checked={checked}
             handleCheck={handleCheck}
-            busStopCode={busStop.busStopCode}
+            busStopCode={busStop.BusStopCode}
           />
         </div>
       </div>

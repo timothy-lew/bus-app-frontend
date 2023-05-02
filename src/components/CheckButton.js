@@ -29,7 +29,13 @@ const boxVariant = {
   },
 };
 
-function CheckButton({ checked, handleCheck, busStopCode, description }) {
+function CheckButton({
+  checked,
+  handleCheck,
+  busStopCode,
+  description,
+  roadName,
+}) {
   // console.log(busStopCode);
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
@@ -38,7 +44,7 @@ function CheckButton({ checked, handleCheck, busStopCode, description }) {
       className={styles.svgBox}
       variants={boxVariant}
       animate={checked ? 'checked' : 'unchecked'}
-      onClick={() => handleCheck(busStopCode, description)}
+      onClick={() => handleCheck(busStopCode, description, roadName)}
     >
       <motion.svg
         className={styles.svg}

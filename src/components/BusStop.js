@@ -10,7 +10,7 @@ function BusStop({ busStop, setBuses, setDisplayBuses }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
 
-  console.log(busStop);
+  // console.log(busStop);
 
   async function getBuses(busStopId) {
     try {
@@ -25,16 +25,19 @@ function BusStop({ busStop, setBuses, setDisplayBuses }) {
     }
   }
 
-  const handleCheck = (busStopCode, description) => {
-    // console.log(busStopCode);
+  const handleCheck = (busStopCode, description, roadName) => {
     if (!checked) {
       setChecked(!checked);
       dispatch(
-        addBusStop({ busStopCode: busStopCode, description: description })
+        addBusStop({
+          BusStopCode: busStopCode,
+          Description: description,
+          RoadName: roadName,
+        })
       );
     } else {
       setChecked(!checked);
-      dispatch(deleteBusStop({ busStopCode: busStopCode }));
+      dispatch(deleteBusStop({ BusStopCode: busStopCode }));
     }
   };
 
@@ -47,13 +50,14 @@ function BusStop({ busStop, setBuses, setDisplayBuses }) {
         <p onClick={() => getBuses(busStop.BusStopCode)}>{busStop.RoadName}</p>
         <div
           className={styles.todoDetails}
-          onClick={() => console.log('clicked')}
+          // onClick={() => console.log('clicked')}
         >
           <CheckButton
             checked={checked}
             handleCheck={handleCheck}
             busStopCode={`${busStop.BusStopCode}`}
             description={`${busStop.Description}`}
+            roadName={`${busStop.RoadName}`}
           />
         </div>
       </div>
