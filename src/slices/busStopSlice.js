@@ -9,8 +9,18 @@ const getInitialBusStops = () => {
   return [];
 };
 
+const getInitialBusStopCodes = () => {
+  const localBusStopCodeList = window.localStorage.getItem('busStopCodeList');
+  if (localBusStopCodeList) {
+    return JSON.parse(localBusStopCodeList);
+  }
+  window.localStorage.setItem('busStopCodeList', JSON.stringify([]));
+  return [];
+};
+
 const initialValue = {
   busStopList: getInitialBusStops(),
+  busStopCodeList: getInitialBusStopCodes(),
 };
 
 export const busStopSlice = createSlice({
@@ -18,18 +28,28 @@ export const busStopSlice = createSlice({
   initialState: initialValue,
   reducers: {
     addBusStop: (state, action) => {
-      // console.log(action);
       state.busStopList.push(action.payload);
+      state.busStopCodeList.push(action.payload.BusStopCode);
 
       const busStopList = window.localStorage.getItem('busStopList');
+      const busStopCodeList = window.localStorage.getItem('busStopCodeList');
+
       if (busStopList) {
         const busStopListArr = JSON.parse(busStopList);
+        const busStopCodeListArr = JSON.parse(busStopCodeList);
+
         busStopListArr.push({
           ...action.payload,
         });
+        busStopCodeListArr.push(action.payload.BusStopCode);
+
         window.localStorage.setItem(
           'busStopList',
           JSON.stringify(busStopListArr)
+        );
+        window.localStorage.setItem(
+          'busStopCodeList',
+          JSON.stringify(busStopCodeListArr)
         );
       } else {
         window.localStorage.setItem(
@@ -39,26 +59,34 @@ export const busStopSlice = createSlice({
       }
     },
     deleteBusStop: (state, action) => {
-      // console.log(initialValue);
-      // console.log(action.payload);
-
       const busStopList = window.localStorage.getItem('busStopList');
-      // console.log(busStopList);
+      const busStopCodeList = window.localStorage.getItem('busStopCodeList');
+
       if (busStopList) {
         const busStopListArr = JSON.parse(busStopList);
-        // console.log(busStopListArr);
+        const busStopCodeListArr = JSON.parse(busStopCodeList);
 
         busStopListArr.forEach((busStop, index) => {
-          // console.log(busStop);
           if (busStop.BusStopCode === action.payload.BusStopCode) {
             busStopListArr.splice(index, 1); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
           }
         });
+        busStopCodeListArr.forEach((busStop, index) => {
+          if (busStop === action.payload.BusStopCode) {
+            busStopCodeListArr.splice(index, 1);
+          }
+        });
+
         window.localStorage.setItem(
           'busStopList',
           JSON.stringify(busStopListArr)
         );
+        window.localStorage.setItem(
+          'busStopCodeList',
+          JSON.stringify(busStopCodeListArr)
+        );
         state.busStopList = busStopListArr;
+        state.busStopCodeList = busStopCodeListArr;
       }
     },
   },

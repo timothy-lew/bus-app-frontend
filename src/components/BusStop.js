@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/modules/todoItem.module.scss';
 import axios from 'axios';
 import CheckButton from './CheckButton';
@@ -6,11 +6,13 @@ import CheckButton from './CheckButton';
 import { addBusStop, deleteBusStop } from '../slices/busStopSlice';
 import { useDispatch } from 'react-redux';
 
-function BusStop({ busStop, setBuses, setDisplayBuses }) {
+function BusStop({ busStop, setBuses, setDisplayBuses, isChecked }) {
   const dispatch = useDispatch();
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(isChecked);
 
-  // console.log(busStop);
+  // useEffect(() => {
+  //   console.log(checked);
+  // }, [checked]);
 
   async function getBuses(busStopId) {
     try {
@@ -48,10 +50,7 @@ function BusStop({ busStop, setBuses, setDisplayBuses }) {
           {busStop.Description}
         </h1>
         <p onClick={() => getBuses(busStop.BusStopCode)}>{busStop.RoadName}</p>
-        <div
-          className={styles.todoDetails}
-          // onClick={() => console.log('clicked')}
-        >
+        <div className={styles.todoDetails}>
           <CheckButton
             checked={checked}
             handleCheck={handleCheck}
