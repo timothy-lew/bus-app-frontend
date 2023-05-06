@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { MdOutlineClose } from 'react-icons/md';
 import axios from 'axios';
 // import toast from 'react-hot-toast';

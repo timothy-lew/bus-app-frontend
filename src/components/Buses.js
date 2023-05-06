@@ -2,13 +2,6 @@ import React from 'react';
 import styles from '../styles/modules/todoItem.module.scss';
 
 function Buses({ buses }) {
-  // console.log(busStops);
-  // console.log(busStops[0]);
-
-  // busStops[0].Services.map((busStop) => {
-  //   console.log(busStop.NextBus.EstimatedArrival);
-  // });
-
   // display buses
   return (
     <div className={styles.scroll}>
@@ -18,8 +11,6 @@ function Buses({ buses }) {
         let m2 = new Date(bus.NextBus2.EstimatedArrival).getTime();
         let m3 = new Date(bus.NextBus3.EstimatedArrival).getTime();
 
-        // Math.round(num * 10) / 10
-        // function needs to return something
         return (
           <div key={bus.ServiceNo} className={styles.item}>
             <h1>{bus.ServiceNo} </h1>

@@ -36,7 +36,6 @@ function CheckButton({
   description,
   roadName,
 }) {
-  // console.log(busStopCode);
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
   return (

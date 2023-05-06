@@ -8,9 +8,6 @@ const buttonTypes = {
 };
 
 function Button({ children, type, variant, ...rest }) {
-  // console.log(buttonTypes['primary']);
-  // console.log(buttonTypes['secondary']);
-
   return (
     <button
       type={type === 'submit' ? 'submit' : 'button'}

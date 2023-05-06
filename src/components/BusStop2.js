@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import styles from '../styles/modules/todoItem.module.scss';
 import axios from 'axios';
 import CheckButton from './CheckButton';
-import getBusesByBusStopCode from '../utils/getBusesByBusStopCode';
 
-import { addBusStop, deleteBusStop } from '../slices/busStopSlice';
+import { deleteBusStop } from '../slices/busStopSlice';
 import { useDispatch } from 'react-redux';
 
 function BusStop2({ busStop, setBuses, setDisplayBuses }) {
-  // console.log(busStop);
-  // console.log(buses);
-
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
 
@@ -28,7 +24,6 @@ function BusStop2({ busStop, setBuses, setDisplayBuses }) {
   }
 
   const handleCheck = (busStopCode) => {
-    // console.log(busStopCode);
     if (checked) {
       setChecked(!checked);
       dispatch(deleteBusStop({ BusStopCode: busStopCode }));
@@ -38,25 +33,13 @@ function BusStop2({ busStop, setBuses, setDisplayBuses }) {
   return (
     <div className={styles.scroll}>
       <div className={styles.item}>
-        <h1
-          // onClick={(buses) => {
-          //   let res = getBusesByBusStopCode(busStop.busStopCode);
-          //   console.log(typeof buses);
-          //   buses.push(res);
-          //   setDisplayBuses(true);
-          // }}
-          onClick={() => getBuses(busStop.BusStopCode)}
-        >
+        <h1 onClick={() => getBuses(busStop.BusStopCode)}>
           {busStop.BusStopCode}
         </h1>
         <h1 onClick={() => getBuses(busStop.BusStopCode)}>
           {busStop.Description}
         </h1>
-        <p onClick={() => getBuses(busStop.BusStopCode)}>{busStop.RoadName}</p>
-        <div
-          className={styles.todoDetails}
-          // onClick={() => console.log('clicked')}
-        >
+        <div className={styles.todoDetails}>
           <CheckButton
             onClick={() => handleCheck(busStop.BusStopCode)}
             checked={checked}

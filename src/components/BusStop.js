@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/modules/todoItem.module.scss';
 import axios from 'axios';
 import CheckButton from './CheckButton';

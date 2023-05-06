@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../styles/modules/todoItem.module.scss';
 import BusStop from './BusStop';
 
