@@ -2,11 +2,6 @@
 	"name": "bus-app",
 	"version": "0.1.0",
 	"private": true,
-	"browser": {
-		"fs": false,
-		"os": false
-	},
-	"proxy": "http://192.168.18.62:3001",
 	"dependencies": {
 		"@fontsource/poppins": "^4.5.10",
 		"@reduxjs/toolkit": "^1.9.1",
