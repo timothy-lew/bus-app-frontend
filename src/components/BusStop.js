@@ -6,6 +6,8 @@ import CheckButton from './CheckButton';
 import { addBusStop, deleteBusStop } from '../slices/busStopSlice';
 import { useDispatch } from 'react-redux';
 
+import Config from '../config/config.js';
+
 function BusStop({ busStop, setBuses, setDisplayBuses, isChecked }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(isChecked);
@@ -18,7 +20,7 @@ function BusStop({ busStop, setBuses, setDisplayBuses, isChecked }) {
     try {
       let res = await axios({
         method: 'get',
-        url: `http://localhost:3000/busstop/number/${busStopId}`,
+        url: `${Config.base_url}/busstop/number/${busStopId}`,
       });
       setBuses(res.data);
       setDisplayBuses(true);

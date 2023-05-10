@@ -8,6 +8,8 @@ import Button from './Button';
 import Buses from './Buses';
 import BusStops from './BusStops';
 
+import Config from '../config/config.js';
+
 function BusModel({ modelOpen, setModelOpen }) {
   const [busStopName, setBusStopName] = useState('orchard');
 
@@ -19,10 +21,9 @@ function BusModel({ modelOpen, setModelOpen }) {
 
   async function getBusStop(busStopName) {
     try {
-      console.log('busStopName = ', busStopName);
       let res = await axios({
         method: 'get',
-        url: `http://localhost:3000/busstop/name/${busStopName}`,
+        url: `${Config.base_url}/busstop/name/${busStopName}`,
       });
 
       setBusStops(res.data);
