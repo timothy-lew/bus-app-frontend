@@ -7,7 +7,7 @@ module.exports = {
   apps: [
     {
       name: 'frontend',
-      script: 'serve -s build -l 80'
+      script: 'serve -s build -l 3001'
     },
   ],
 };
