@@ -9,12 +9,12 @@ function AppHeader() {
 
   return (
     <div className={styles.AppHeader}>
-      <Button variant="primary" onClick={() => setModelOpen(true)}>
-        Search
-      </Button>
-
       <Button variant="primary" onClick={() => window.location.reload()}>
         Home
+      </Button>
+
+      <Button variant="primary" onClick={() => setModelOpen(true)}>
+        Search
       </Button>
 
       <BusModel type="add" modelOpen={modelOpen} setModelOpen={setModelOpen} />

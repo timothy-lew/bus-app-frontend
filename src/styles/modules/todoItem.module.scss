@@ -11,6 +11,7 @@
   &:last-child {
     margin-bottom: 0;
   }
+  cursor: pointer;
 }
 .todoDetails {
   display: flex;
@@ -94,6 +95,6 @@
 // scrollable div
 .scroll {
   overflow-y: scroll;
-  max-height: 700px;
+  max-height: 400px;
   // scroll-behaviour: smooth;
 }
