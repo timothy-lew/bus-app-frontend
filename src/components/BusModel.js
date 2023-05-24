@@ -21,8 +21,6 @@ function BusModel({ modelOpen, setModelOpen }) {
 
   async function getBusStop(busStopName) {
     try {
-      console.log(`${Config.by_name_url}/v1/busstop`);
-
       let res = await axios({
         method: 'get',
         url: `${Config.by_name_url}/v1/busstop`,
