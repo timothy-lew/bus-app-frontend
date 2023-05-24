@@ -16,7 +16,10 @@ function BusStop2({ busStop, setBuses, setDisplayBuses }) {
     try {
       let res = await axios({
         method: 'get',
-        url: `${Config.base_url}/busstop/number/${busStopId}`,
+        url: `${Config.by_number_url}/v1/busstop`,
+        params: {
+          number: busStopId,
+        },
       });
       setBuses(res.data);
       setDisplayBuses(true);
