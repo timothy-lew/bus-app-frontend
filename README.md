@@ -1,5 +1,8 @@
 # bus-app frontend
 
+## Deployed: https://bus.techdevglobal.com <br/>
+## Code makes requests to AWS Lambda
+
 Frontend for bus-app
 
 1. Install nodenv
