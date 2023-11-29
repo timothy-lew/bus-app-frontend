@@ -23,7 +23,7 @@ function BusModel({ modelOpen, setModelOpen }) {
     try {
       let res = await axios({
         method: 'get',
-        url: `${Config.base_url}/busstop/name/${busStopName}`,
+        url: `${Config.base_url}/busstops/name/${busStopName}`,
         params: {
           name: busStopName,
         },
